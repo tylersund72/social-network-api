@@ -1,7 +1,7 @@
 const { Thought } = require("../models");
 
 const thoughtController = {
-  // get all pizzas
+  // get all thoughts
   getAllThought(req, res) {
     Thought.find({})
       .populate({
@@ -17,7 +17,7 @@ const thoughtController = {
       });
   },
 
-  // get one pizza by id
+  // get one thought by id
   getThoughtById({ params }, res) {
     Thought.findOne({ _id: params.id })
       .populate({
@@ -32,14 +32,14 @@ const thoughtController = {
       });
   },
 
-  // createPizza
+  // post thought
   postThought({ body }, res) {
     Thought.create(body)
       .then((dbThoughtData) => res.json(dbThoughtData))
       .catch((err) => res.json(err));
   },
 
-  // update pizza by id
+  // update thought by id
   updateThought({ params, body }, res) {
     Thought.findOneAndUpdate({ _id: params.id }, body, {
       new: true,
@@ -55,7 +55,7 @@ const thoughtController = {
       .catch((err) => res.json(err));
   },
 
-  // delete pizza
+  // delete thought
   deleteThought({ params }, res) {
     Thought.findOneAndDelete({ _id: params.id })
       .then((dbThoughtData) => {
@@ -84,6 +84,8 @@ const thoughtController = {
       })
       .catch((err) => res.json(err));
   },
+
+  // delete reaction
   deleteReaction({ params }, res) {
     Reaction.findOneAndUpdate(
       { _id: params.thoughtId },
