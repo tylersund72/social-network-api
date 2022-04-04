@@ -3,7 +3,7 @@ const apiRoutes = require("./api");
 
 router.use("/api", apiRoutes);
 router.use((req, res) => {
-  res.status(500);
+  res.status(404);
 });
 
 module.exports = router;
